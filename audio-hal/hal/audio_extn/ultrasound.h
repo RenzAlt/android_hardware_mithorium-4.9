@@ -1,5 +1,6 @@
 /*
- * Copyright (C) 2017 The Android Open Source Project
+ * Copyright (c) 2017-2018 The LineageOS Project
+ * Copyright (c) 2017 Balázs Triszka <balika011@protonmail.ch>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,23 +15,19 @@
  * limitations under the License.
  */
 
-#ifndef __QAUDIOPERF_H__
-#define __QAUDIOPERF_H__
+#ifndef ULTRASOUND_H
+#define ULTRASOUND_H
 
-#include <stdbool.h>
-
-#ifdef __cplusplus
-extern "C" {
+#ifndef ELLIPTIC_ULTRASOUND_ENABLED
+#define us_init(adev) (0)
+#define us_deinit() (0)
+#define us_start() (0)
+#define us_stop() (0)
+#else
+int us_init(struct audio_device *adev);
+void us_deinit(void);
+int us_start(void);
+int us_stop(void);
 #endif
 
-// return true on success, false on failure
-bool audio_streaming_hint_start();
-bool audio_streaming_hint_end();
-bool audio_low_latency_hint_start();
-bool audio_low_latency_hint_end();
-
-#ifdef __cplusplus
-}
 #endif
-
-#endif //__QAUDIOPERF_H__
